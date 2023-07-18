@@ -13,7 +13,8 @@ interface Product {
     rating: number;
     stock: number;
     brand: string;
-    category: string
+    category: string;
+    images: string[]
 }
 
 interface Select{
@@ -24,7 +25,7 @@ interface Select{
 const SelectLimit: FC<Select> = ({total, setLimit}) =>{
     const components = [];
 
-    for (let i = 1; i < total; i++) {
+    for (let i = 1; i < total+1; i++) {
         components.push(<option key={i}>{i}</option>);
     }
 
@@ -37,7 +38,6 @@ const SelectLimit: FC<Select> = ({total, setLimit}) =>{
         </select>
     )
 }
-
 
 
 function Products() {
@@ -93,7 +93,7 @@ function Products() {
             </div>
             <div className="search-bar">
                 <div className="search-form d-flex align-items-center">
-                    <SelectLimit total={100} setLimit={setLimit} />
+                    <SelectLimit total={total} setLimit={setLimit} />
                 </div>
             </div>
       </div>
@@ -109,12 +109,12 @@ function Products() {
                     <th scope="col">title</th>
                     <th scope="col">description</th>
                     <th scope="col">price</th>
-                    <th scope="col">discountPercentage</th>
+                    <th scope="col">Percentage</th>
                     <th scope="col">rating</th>
                     <th scope="col">stock</th>
                     <th scope="col">brand</th>
                     <th scope="col">category</th>
-                   
+                    <th scope="col">other picture</th>
                   </tr>
                 </thead>
                 <tbody className="h-[100px]">
@@ -132,6 +132,7 @@ function Products() {
                                 category={item.category}
                                 brand={item.brand}
                                 description={item.description}
+                                images={item.images}
                             />
                         ))
                     }
